@@ -33,7 +33,7 @@ to render it.
 
 - Node.js 20+
 - Python 3.11+
-- A Google AI Studio API key — https://aistudio.google.com/apikey
+- A Groq API key — https://console.groq.com/keys
 - An Exa API key — https://dashboard.exa.ai/api-keys (free tier: $20 on signup, then $10/month)
 
 ## Setup
@@ -51,7 +51,7 @@ cp .env.example .env              # then fill in your keys
 Edit `server/.env`:
 
 ```
-GOOGLE_API_KEY=your_google_key
+GROQ_API_KEY=your_groq_key
 EXA_API_KEY=your_exa_key
 ```
 
@@ -82,7 +82,7 @@ Then in Chrome:
 
 1. The popup calls `chrome.tabs.query` and reads the active tab's URL and title.
 2. It POSTs `{ messages, tab }` to `POST /chat` on the backend.
-3. The backend builds an agent with the Gemini model and two tools.
+3. The backend builds an agent with Groq's GPT-OSS 120B model and two tools.
 4. If the question is about the open page, the agent calls `read_current_tab`, which
    fetches that URL server-side and extracts the readable text.
 5. If it needs outside facts, it calls `web_search`, which queries Exa.
@@ -100,9 +100,9 @@ Then in Chrome:
 
 | Variable                 | Where               | Default                        | Purpose                                    |
 | ------------------------ | ------------------- | ------------------------------ | ------------------------------------------ |
-| `GOOGLE_API_KEY`         | `server/.env`       | —                              | Gemini access (required)                   |
+| `GROQ_API_KEY`            | `server/.env`       | —                              | Groq access (required)                     |
 | `EXA_API_KEY`            | `server/.env`       | —                              | Web search (required)                      |
-| `MODEL`                  | `server/.env`       | `google_genai:gemini-3.8-flash`| Any LangChain model string                 |
+| `MODEL`                  | `server/.env`       | `openai/gpt-oss-120b`          | Groq model ID                              |
 | `MAX_PAGE_CHARS`         | `server/.env`       | `12000`                        | How much page text is passed to the model  |
 | `REQUEST_TIMEOUT`        | `server/.env`       | `20`                            | Timeout in seconds for model and page-fetch requests |
 | `CORS_ORIGINS`           | `server/.env`       | `*`                            | Allowed origins                            |

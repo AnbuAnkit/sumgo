@@ -1,7 +1,7 @@
-"""The LangChain agent: a Gemini model plus the search and tab-reading tools."""
+"""The LangChain agent: a Groq model plus the search and tab-reading tools."""
 
 from langchain.agents import create_agent
-from langchain.chat_models import init_chat_model
+from langchain_groq import ChatGroq
 
 from .config import settings
 from .schemas import ChatRequest, TabContext, ToolCallRecord
@@ -57,11 +57,11 @@ def run_agent(request: ChatRequest) -> tuple[str, list[ToolCallRecord]]:
     from langchain_core.messages import AIMessage
 
     agent = create_agent(
-        model=init_chat_model(
-            settings.model,
-            api_key=settings.google_api_key or None,
-            request_timeout=settings.request_timeout,
-            retries=0,
+        model=ChatGroq(
+            model=settings.model,
+            api_key=settings.groq_api_key or None,
+            timeout=settings.request_timeout,
+            max_retries=0,
         ),
         tools=build_tools(request.tab),
         system_prompt=_tab_prompt(request.tab),

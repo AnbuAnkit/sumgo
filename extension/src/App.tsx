@@ -96,7 +96,7 @@ export default function App() {
   return (
     <div className="app">
       <header className="header">
-        <span className="brand">PageChat</span>
+        <span className="brand">SumGo</span>
         <span className="tab-chip" title={tab.url ?? 'No page available'}>
           {tab.url ? hostOf(tab.url) : 'no page access'}
         </span>
