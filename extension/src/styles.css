@@ -50,7 +50,7 @@ body {
 }
 
 .tab-chip {
-  max-width: 200px;
+  max-width: 120px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -61,6 +61,22 @@ body {
   font-size: 12px;
 }
 
+.header-button {
+  padding: 5px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-alt);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.header-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
 .messages {
   flex: 1;
   overflow-y: auto;
@@ -68,6 +84,83 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.history {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.history h2 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.history-note {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.conversation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.conversation-row {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.conversation-open {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.conversation-open span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.conversation-open time {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.conversation-open:hover,
+.conversation-delete:hover {
+  border-color: var(--accent);
+}
+
+.conversation-delete {
+  width: 34px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--danger);
+  font: inherit;
+  cursor: pointer;
+}
+
+.history-empty {
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .empty {

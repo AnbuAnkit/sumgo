@@ -16,6 +16,7 @@ class TabContext(BaseModel):
 
 
 class ChatRequest(BaseModel):
+    conversation_id: str
     messages: list[ChatMessage] = Field(min_length=1)
     tab: TabContext | None = None
 
@@ -28,6 +29,21 @@ class ToolCallRecord(BaseModel):
 
 
 class ChatResponse(BaseModel):
+    conversation_id: str
     reply: str
     tool_calls: list[ToolCallRecord] = Field(default_factory=list)
     tab_url: str | None = None
+
+
+class StoredMessage(ChatMessage):
+    tools: list[ToolCallRecord] = Field(default_factory=list)
+
+
+class ConversationSummary(BaseModel):
+    id: str
+    title: str
+    updated_at: str
+
+
+class ConversationDetail(ConversationSummary):
+    messages: list[StoredMessage]

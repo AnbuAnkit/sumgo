@@ -11,6 +11,8 @@ class Settings:
     def __init__(self) -> None:
         self.groq_api_key = os.getenv("GROQ_API_KEY", "").strip()
         self.exa_api_key = os.getenv("EXA_API_KEY", "").strip()
+        self.mongodb_uri = os.getenv("MONGODB_URI", "").strip()
+        self.mongodb_database = os.getenv("MONGODB_DATABASE", "sumgo").strip()
         self.model = os.getenv("MODEL", "openai/gpt-oss-120b").strip()
         self.max_page_chars = int(os.getenv("MAX_PAGE_CHARS", "12000"))
         self.request_timeout = float(os.getenv("REQUEST_TIMEOUT", "20"))
