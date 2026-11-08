@@ -1,4 +1,18 @@
-# PageChat
+Turn on the backend:
+
+cd server
+
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --reload --port 8000
+
+(or)
+
+uv run --with-requirements requirements.txt uvicorn app.main:app --reload --port 8000
+
+Turn on Frontend:
+
+npm run dev
+
+# SumGo
 
 A Chrome extension that opens as a normal chat popup. It reads the URL of the tab you
 currently have open, hands it to a LangChain agent running in a FastAPI backend, and lets
@@ -91,22 +105,22 @@ Then in Chrome:
 
 ## API
 
-| Method | Route     | Body                                                  | Returns                                              |
-| ------ | --------- | ----------------------------------------------------- | ---------------------------------------------------- |
-| `GET`  | `/health` | —                                                     | `{ status, model, missing_keys }`                    |
-| `POST` | `/chat`   | `{ messages: [{role, content}], tab: {url, title} }`  | `{ reply, tool_calls: [{tool, args}], tab_url }`      |
+| Method | Route     | Body                                                 | Returns                                          |
+| ------ | --------- | ---------------------------------------------------- | ------------------------------------------------ |
+| `GET`  | `/health` | —                                                    | `{ status, model, missing_keys }`                |
+| `POST` | `/chat`   | `{ messages: [{role, content}], tab: {url, title} }` | `{ reply, tool_calls: [{tool, args}], tab_url }` |
 
 ## Configuration
 
-| Variable                 | Where               | Default                        | Purpose                                    |
-| ------------------------ | ------------------- | ------------------------------ | ------------------------------------------ |
-| `GROQ_API_KEY`            | `server/.env`       | —                              | Groq access (required)                     |
-| `EXA_API_KEY`            | `server/.env`       | —                              | Web search (required)                      |
-| `MODEL`                  | `server/.env`       | `openai/gpt-oss-120b`          | Groq model ID                              |
-| `MAX_PAGE_CHARS`         | `server/.env`       | `12000`                        | How much page text is passed to the model  |
-| `REQUEST_TIMEOUT`        | `server/.env`       | `20`                            | Timeout in seconds for model and page-fetch requests |
-| `CORS_ORIGINS`           | `server/.env`       | `*`                            | Allowed origins                            |
-| `VITE_API_BASE`          | `extension/.env`    | `http://localhost:8000`        | Backend base URL baked into the build      |
+| Variable          | Where            | Default                 | Purpose                                              |
+| ----------------- | ---------------- | ----------------------- | ---------------------------------------------------- |
+| `GROQ_API_KEY`    | `server/.env`    | —                       | Groq access (required)                               |
+| `EXA_API_KEY`     | `server/.env`    | —                       | Web search (required)                                |
+| `MODEL`           | `server/.env`    | `openai/gpt-oss-120b`   | Groq model ID                                        |
+| `MAX_PAGE_CHARS`  | `server/.env`    | `12000`                 | How much page text is passed to the model            |
+| `REQUEST_TIMEOUT` | `server/.env`    | `20`                    | Timeout in seconds for model and page-fetch requests |
+| `CORS_ORIGINS`    | `server/.env`    | `*`                     | Allowed origins                                      |
+| `VITE_API_BASE`   | `extension/.env` | `http://localhost:8000` | Backend base URL baked into the build                |
 
 If you change the backend port or host, update both `VITE_API_BASE` (then rebuild) and the
 `host_permissions` entry in `extension/public/manifest.json`.
