@@ -60,7 +60,8 @@ def run_agent(request: ChatRequest) -> tuple[str, list[ToolCallRecord]]:
         model=init_chat_model(
             settings.model,
             api_key=settings.google_api_key or None,
-            thinking_level="low",
+            request_timeout=settings.request_timeout,
+            retries=0,
         ),
         tools=build_tools(request.tab),
         system_prompt=_tab_prompt(request.tab),

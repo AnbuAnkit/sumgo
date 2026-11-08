@@ -104,6 +104,7 @@ Then in Chrome:
 | `EXA_API_KEY`            | `server/.env`       | —                              | Web search (required)                      |
 | `MODEL`                  | `server/.env`       | `google_genai:gemini-3.8-flash`| Any LangChain model string                 |
 | `MAX_PAGE_CHARS`         | `server/.env`       | `12000`                        | How much page text is passed to the model  |
+| `REQUEST_TIMEOUT`        | `server/.env`       | `20`                            | Timeout in seconds for model and page-fetch requests |
 | `CORS_ORIGINS`           | `server/.env`       | `*`                            | Allowed origins                            |
 | `VITE_API_BASE`          | `extension/.env`    | `http://localhost:8000`        | Backend base URL baked into the build      |
 
